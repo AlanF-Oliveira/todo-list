@@ -1,5 +1,6 @@
 package com.alan.todo_list.entity;
 
+import com.alan.todo_list.enums.TaskStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,10 +19,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    private String name;
-    private String mail;
-    private String task;
+    private String title;
     private String description;
-    private LocalDateTime dateTime;
-    private LocalDateTime taskTime;
+    private TaskStatus status;
+    private LocalDateTime createdAt;
 }
