@@ -1,6 +1,5 @@
 package com.alan.todo_list.dto;
 
-import com.alan.todo_list.enums.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
