@@ -2,6 +2,7 @@
 
 Aplicação fullstack de gerenciamento de tarefas.
 
+
 ## Tecnologias
 
 **Backend**
@@ -113,4 +114,3 @@ http://localhost:8080/swagger-ui/index.html
 
 ```bash
 ./mvnw test
-```
