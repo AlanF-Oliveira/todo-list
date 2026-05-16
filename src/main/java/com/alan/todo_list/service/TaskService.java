@@ -44,7 +44,7 @@ public class TaskService {
         return mapper.toResponse(savedTask);
     }
 
-    public void deleteTask(Long id){
+    public void deleteTaskById(Long id){
         repository.deleteById(id);
     }
 
