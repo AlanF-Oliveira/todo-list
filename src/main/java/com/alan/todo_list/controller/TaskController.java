@@ -23,8 +23,8 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<ResponseEntity<TaskResponse>> showAllTasks(){
-        return Res
+    public ResponseEntity <List<TaskResponse>> showAllTasks(){
+        return ResponseEntity.status(HttpStatus.OK).body(service.showAllTasks());
     }
 
 }
