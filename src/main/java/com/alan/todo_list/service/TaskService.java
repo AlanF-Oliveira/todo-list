@@ -17,14 +17,21 @@ public class TaskService {
     private final TaskMapper mapper;
     private final TaskRepository repository;
 
-    public TaskResponse createTask(TaskRequest request){
+    public TaskResponse createTask(TaskRequest request) {
         Task task = mapper.toEntity(request);
         Task taskSaved = repository.save(task);
         return mapper.toResponse(taskSaved);
     }
 
-    public List<TaskResponse> showAllTasks(){
-        return mapper.toResponse(repository.findAll());
+    public List<TaskResponse> showAllTasks() {
+        return mapper.toResponseList(repository.findAll());
     }
+
+    public TaskResponse showTaskById(Long id) {
+        return mapper.toResponse(repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada")));
+    }
+
+
 
 }
