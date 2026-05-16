@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 @Builder
 public class TaskRequest {
     @NotBlank

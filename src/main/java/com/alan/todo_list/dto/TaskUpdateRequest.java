@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 @Builder
 public class TaskUpdateRequest {
     private String title;
