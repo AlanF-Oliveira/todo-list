@@ -13,4 +13,5 @@ public class TaskRequest {
     @NotBlank
     private String title;
     private String description;
+    private TaskStatus status;
 }
