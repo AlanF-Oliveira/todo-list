@@ -2,7 +2,6 @@
 
 Aplicação fullstack de gerenciamento de tarefas.
 
-
 ## Tecnologias
 
 **Backend**
