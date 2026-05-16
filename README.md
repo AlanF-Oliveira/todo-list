@@ -1,6 +1,6 @@
 # Todo List - Fullstack Application
 
-Aplicação fullstack de gerenciamento de tarefas desenvolvida como desafio técnico para vaga de estágio.
+Aplicação fullstack de gerenciamento de tarefas.
 
 ## Tecnologias
 
