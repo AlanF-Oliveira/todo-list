@@ -6,6 +6,7 @@ import com.alan.todo_list.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class TaskController {
     @ApiResponse(responseCode = "201", description = "Tarefa criada com sucesso")
     @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @PostMapping
-    public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request) {
+    public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.createTask(request));
     }
     @Operation(summary = "Listar todas as tarefas")
@@ -46,7 +47,7 @@ public class TaskController {
     @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @ApiResponse(responseCode = "404", description = "Tarefa não encontrada")
     @PutMapping("/{id}")
-    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id, @RequestBody TaskRequest request) {
+    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(service.updateTask(id, request));
     }
 
