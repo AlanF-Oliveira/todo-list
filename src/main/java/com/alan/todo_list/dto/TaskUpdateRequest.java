@@ -1,7 +1,7 @@
 package com.alan.todo_list.dto;
 
 import com.alan.todo_list.enums.TaskStatus;
-import jakarta.validation.constraints.NotBlank;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @AllArgsConstructor
@@ -9,8 +9,9 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class TaskRequest {
-    @NotBlank
+public class TaskUpdateRequest {
     private String title;
     private String description;
+    @Schema(description = "Status da tarefa", allowableValues = {"PENDING", "COMPLETED", "CANCELED"})
+    private TaskStatus status;
 }

@@ -2,6 +2,7 @@ package com.alan.todo_list.controller;
 
 import com.alan.todo_list.dto.TaskRequest;
 import com.alan.todo_list.dto.TaskResponse;
+import com.alan.todo_list.dto.TaskUpdateRequest;
 import com.alan.todo_list.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -46,8 +47,8 @@ public class TaskController {
     @ApiResponse(responseCode = "200", description = "Tarefa atualizada com sucesso")
     @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @ApiResponse(responseCode = "404", description = "Tarefa não encontrada")
-    @PutMapping("/{id}")
-    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequest request) {
+    @PatchMapping ("/{id}")
+    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id, @RequestBody TaskUpdateRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(service.updateTask(id, request));
     }
 
