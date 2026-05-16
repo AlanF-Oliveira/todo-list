@@ -68,11 +68,18 @@ todo-list/
 CREATE DATABASE "db_todo-list";
 ```
 
-2. Configure o `application.properties`:
+2. Configure variáveis de ambiente (ou use os fallbacks do `application.properties`):
+```bash
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/db_todo-list
+SPRING_DATASOURCE_USERNAME=seu_usuario
+SPRING_DATASOURCE_PASSWORD=sua_senha
+```
+
+O backend também possui fallback local no `application.properties`:
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/db_todo-list
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/db_todo-list}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:postgres}
 ```
 
 3. Rode a aplicação:
