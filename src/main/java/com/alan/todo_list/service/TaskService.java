@@ -24,7 +24,7 @@ public class TaskService {
         Task task = mapper.toEntity(request);
         task.setStatus(TaskStatus.PENDING);
         Task savedTask  = repository.save(task);
-        return mapper.toResponse(savedTask );
+        return mapper.toResponse(savedTask);
     }
 
     public List<TaskResponse> showAllTasks() {
