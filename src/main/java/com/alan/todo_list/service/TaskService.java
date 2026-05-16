@@ -2,6 +2,7 @@ package com.alan.todo_list.service;
 
 import com.alan.todo_list.dto.TaskRequest;
 import com.alan.todo_list.dto.TaskResponse;
+import com.alan.todo_list.dto.TaskUpdateRequest;
 import com.alan.todo_list.entity.Task;
 import com.alan.todo_list.enums.TaskStatus;
 import com.alan.todo_list.exception.ResourceNotFoundException;
@@ -35,12 +36,12 @@ public class TaskService {
                 .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada")));
     }
 
-    public TaskResponse updateTask(Long id, TaskRequest request){
+    public TaskResponse updateTask(Long id, TaskUpdateRequest request){
         Task task = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
-        task.setDescription(request.getDescription());
-        task.setTitle(request.getTitle());
-        task.setStatus(request.getStatus());
+        if (request.getTitle() != null) task.setTitle(request.getTitle());
+        if (request.getDescription() != null) task.setDescription(request.getDescription());
+        if (request.getStatus() != null) task.setStatus(request.getStatus());
         Task savedTask = repository.save(task);
         return mapper.toResponse(savedTask);
     }
