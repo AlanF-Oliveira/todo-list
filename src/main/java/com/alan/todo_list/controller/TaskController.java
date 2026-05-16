@@ -27,4 +27,9 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(service.showAllTasks());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity <TaskResponse> showTaskById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.showTaskById(id));
+    }
+
 }
