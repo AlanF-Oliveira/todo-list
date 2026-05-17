@@ -1,6 +1,24 @@
 # Todo List - Fullstack Application
 
-Aplicação fullstack de gerenciamento de tarefas.
+Aplicação fullstack de gerenciamento de tarefas desenvolvida com Java + Spring Boot no backend e React + Vite no frontend.
+
+O projeto permite criar, listar, atualizar, concluir e remover tarefas utilizando arquitetura REST, persistência com PostgreSQL, validação de dados e documentação automática com Swagger/OpenAPI.
+
+---
+
+## Deploy
+
+Frontend:
+https://todo-list-xi-indol.vercel.app
+
+Backend:
+https://todo-list-production-d7d9.up.railway.app
+
+Swagger:
+https://todo-list-production-d7d9.up.railway.app/swagger-ui/index.html
+
+---
+
 
 ## Tecnologias
 
