@@ -174,3 +174,28 @@ select {
     outline: none;
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 12px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    button {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
