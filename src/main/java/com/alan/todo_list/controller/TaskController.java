@@ -3,10 +3,12 @@ package com.alan.todo_list.controller;
 import com.alan.todo_list.dto.TaskRequest;
 import com.alan.todo_list.dto.TaskResponse;
 import com.alan.todo_list.dto.TaskUpdateRequest;
+import com.alan.todo_list.security.config.SecurityConfig;
 import com.alan.todo_list.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/task")
 @RequiredArgsConstructor
+@SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
 public class TaskController {
 
     private final TaskService service;

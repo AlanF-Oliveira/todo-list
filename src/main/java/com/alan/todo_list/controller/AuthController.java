@@ -1,6 +1,9 @@
 package com.alan.todo_list.controller;
 
 
+import com.alan.todo_list.dto.auth.AuthResponse;
+import com.alan.todo_list.dto.auth.CadastroRequest;
+import com.alan.todo_list.dto.auth.LoginRequest;
 import com.alan.todo_list.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
