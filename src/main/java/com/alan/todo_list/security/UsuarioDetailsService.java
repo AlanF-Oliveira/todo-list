@@ -1,6 +1,6 @@
 package com.alan.todo_list.security;
 
-import com.alan.api_autores_obras.repository.UsuarioRepository;
+import com.alan.todo_list.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
