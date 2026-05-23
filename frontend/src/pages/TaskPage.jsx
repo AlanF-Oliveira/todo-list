@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTasks, createTask, updateTask, deleteTask } from "../services/taskService";
 
-export default function TaskPage() {
+export default function TaskPage({ onLogout }) {
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -9,16 +9,13 @@ export default function TaskPage() {
     const [editTitle, setEditTitle] = useState("");
     const [editDescription, setEditDescription] = useState("");
     const [editStatus, setEditStatus] = useState("");
-
     useEffect(() => {
         loadTasks();
     }, []);
-
     const loadTasks = async () => {
         const data = await getTasks();
         setTasks(data);
     };
-
     const handleCreate = async (e) => {
         e.preventDefault();
         await createTask({ title, description });
@@ -26,44 +23,38 @@ export default function TaskPage() {
         setDescription("");
         loadTasks();
     };
-
     const handleToggle = async (task) => {
         const newStatus = task.status === "COMPLETED" ? "PENDING" : "COMPLETED";
         await updateTask(task.id, { status: newStatus });
         loadTasks();
     };
-
     const handleDelete = async (id) => {
         await deleteTask(id);
         loadTasks();
     };
-
     const handleEdit = (task) => {
         setEditingTask(task.id);
         setEditTitle(task.title);
         setEditDescription(task.description);
         setEditStatus(task.status);
     };
-
     const handleUpdate = async (id) => {
         await updateTask(id, { title: editTitle, description: editDescription, status: editStatus });
         setEditingTask(null);
         loadTasks();
     };
-
     const handleCancel = async (task) => {
         await updateTask(task.id, { status: "CANCELED" });
         loadTasks();
     };
-
     const sortedTasks = [...tasks].sort((a, b) => {
         const order = { PENDING: 0, COMPLETED: 1, CANCELED: 2 };
         return order[a.status] - order[b.status];
     });
-
     return (
         <div className="container">
             <h1>Lista de Tarefas</h1>
+            <button className="btn-delete" onClick={onLogout} style={{ marginBottom: "16px" }}>Sair</button>
 
             <form onSubmit={handleCreate}>
                 <input
@@ -79,7 +70,6 @@ export default function TaskPage() {
                 />
                 <button type="submit" className="btn-add">Adicionar</button>
             </form>
-
             <div className="task-list">
                 {sortedTasks.map((task) => (
                     <div key={task.id} className="task-item">
