@@ -2,7 +2,7 @@
 
 Aplicação fullstack de gerenciamento de tarefas desenvolvida com Java + Spring Boot no backend e React + Vite no frontend.
 
-O projeto permite criar, listar, atualizar, concluir e remover tarefas utilizando arquitetura REST, persistência com PostgreSQL, validação de dados e documentação automática com Swagger/OpenAPI.
+O projeto permite criar, listar, atualizar, concluir e remover tarefas utilizando arquitetura REST, persistência com PostgreSQL, autenticação JWT, validação de dados e documentação automática com Swagger/OpenAPI.
 
 ---
 
@@ -19,13 +19,14 @@ https://todo-list-production-d7d9.up.railway.app/swagger-ui/index.html
 
 ---
 
-
 ## Tecnologias
 
 **Backend**
 - Java 21
 - Spring Boot 3.5
 - Spring Data JPA
+- Spring Security
+- JWT (JSON Web Token)
 - PostgreSQL
 - Hibernate Validator
 - SpringDoc OpenAPI (Swagger)
@@ -38,6 +39,8 @@ https://todo-list-production-d7d9.up.railway.app/swagger-ui/index.html
 
 ## Funcionalidades
 
+- Cadastro e login de usuários com JWT
+- Cada usuário gerencia apenas suas próprias tarefas
 - Criar tarefa com título e descrição
 - Listar todas as tarefas
 - Buscar tarefa por ID
@@ -52,7 +55,6 @@ https://todo-list-production-d7d9.up.railway.app/swagger-ui/index.html
 
 ## Estrutura do Projeto
 
-```
 todo-list/
 ├── src/                  # Backend Spring Boot
 │   └── main/java/com/alan/todo_list/
@@ -64,12 +66,12 @@ todo-list/
 │       ├── exception/    # Exception Handler global
 │       ├── mapper/       # Conversão entre camadas
 │       ├── repository/   # Repositório JPA
+│       ├── security/     # JWT e Spring Security
 │       └── service/      # Regras de negócio
 └── frontend/             # React + Vite
-    └── src/
-        ├── pages/        # TaskPage
-        └── services/     # taskService.js
-```
+└── src/
+├── pages/        # TaskPage, LoginPage, CadastroPage
+└── services/     # taskService, authService\
 
 ## Como rodar localmente
 
@@ -82,62 +84,50 @@ todo-list/
 ### Backend
 
 1. Crie o banco de dados:
-```sql
+
 CREATE DATABASE "db_todo-list";
-```
 
 2. Configure variáveis de ambiente:
-```bash
+
 PGHOST=localhost
 PGPORT=5432
 PGDATABASE=db_todo-list
 PGUSER=seu_usuario
 PGPASSWORD=sua_senha
-```
-
-No Railway, o backend lê diretamente as variáveis nativas do Postgres:
-```properties
-spring.datasource.url=jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-spring.datasource.username=${PGUSER}
-spring.datasource.password=${PGPASSWORD}
-```
+JWT_SECRET=sua_chave_secreta
+JWT_EXPIRATION=86400000
 
 3. Rode a aplicação:
-```bash
-./mvnw spring-boot:run
-```
 
-A API estará disponível em `http://localhost:8080`
+./mvnw spring-boot:run
+
+A API estará disponível em http://localhost:8080
 
 ### Frontend
 
-```bash
 cd frontend
 npm install
 npm run dev
-```
 
-O frontend estará disponível em `http://localhost:5173`
+O frontend estará disponível em http://localhost:5173
 
 ## Documentação da API
 
 Com a aplicação rodando, acesse:
-```
 http://localhost:8080/swagger-ui/index.html
-```
 
 ## Endpoints
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| POST | `/task` | Criar tarefa |
-| GET | `/task` | Listar tarefas |
-| GET | `/task/{id}` | Buscar por ID |
-| PATCH | `/task/{id}` | Atualizar tarefa |
-| DELETE | `/task/{id}` | Deletar tarefa |
+| Método | Endpoint           | Descrição            | Auth |
+|--------|--------------------|----------------------|------|
+| POST   | /auth/cadastrar    | Cadastrar usuário    | Não  |
+| POST   | /auth/entrar       | Login                | Não  |
+| POST   | /task              | Criar tarefa         | Sim  |
+| GET    | /task              | Listar tarefas       | Sim  |
+| GET    | /task/{id}         | Buscar por ID        | Sim  |
+| PATCH  | /task/{id}         | Atualizar tarefa     | Sim  |
+| DELETE | /task/{id}         | Deletar tarefa       | Sim  |
 
 ## Testes
 
-```bash
-./mvnw test
-```
+./mvnw test 
