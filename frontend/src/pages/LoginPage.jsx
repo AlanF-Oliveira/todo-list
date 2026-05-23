@@ -1,0 +1,42 @@
+import { useState } from "react";
+import { login, salvarToken } from "../services/authService";
+
+export default function LoginPage({ onLogin }) {
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [erro, setErro] = useState("");
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setErro("");
+        const resultado = await login({ email, password: senha });
+
+        if (resultado.token) {
+            salvarToken(resultado.token);
+            onLogin();
+        } else {
+            setErro("Email ou senha inválidos.");
+        }
+    };
+return (
+        <div className="container">
+            <h1>Login</h1>
+            <form onSubmit={handleLogin}>
+                <input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    placeholder="Senha"
+                    type="password"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    required
+                />
+                <button type="submit" className="btn-add">Entrar</button>
+            </form>
+            {erro && <p style={{ color: "red" }}>{erro}</p>}
+        </div>
+    );
+}
