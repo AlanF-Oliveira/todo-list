@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { login, salvarToken } from "../services/authService";
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, irParaCadastro }) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
@@ -36,6 +36,7 @@ return (
                 />
                 <button type="submit" className="btn-add">Entrar</button>
             </form>
+            <p>Não tem conta? <span style={{ cursor: "pointer", color: "#e11d74" }} onClick={irParaCadastro}>Cadastre-se</span></p>
             {erro && <p style={{ color: "red" }}>{erro}</p>}
         </div>
     );
