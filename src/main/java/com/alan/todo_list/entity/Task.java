@@ -1,10 +1,7 @@
 package com.alan.todo_list.entity;
 
 import com.alan.todo_list.enums.TaskStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
@@ -24,4 +21,7 @@ public class Task {
     private TaskStatus status;
     @CreationTimestamp
     private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

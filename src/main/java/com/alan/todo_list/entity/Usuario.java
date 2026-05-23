@@ -22,6 +22,8 @@ public class Usuario implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
 
     @Override
