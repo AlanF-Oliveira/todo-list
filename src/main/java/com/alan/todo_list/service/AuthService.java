@@ -1,15 +1,14 @@
-package com.alan.api_autores_obras.service;
+package com.alan.todo_list.service;
 
-import com.alan.api_autores_obras.dto.auth.AuthResponse;
-import com.alan.api_autores_obras.dto.auth.CadastroRequest;
-import com.alan.api_autores_obras.dto.auth.LoginRequest;
-import com.alan.api_autores_obras.entity.Usuario;
-import com.alan.api_autores_obras.exception.ConflictException;
-import com.alan.api_autores_obras.exception.ResourceNotFoundException;
-import com.alan.api_autores_obras.exception.UnauthorizedException;
-import com.alan.api_autores_obras.mapper.AuthMapper;
-import com.alan.api_autores_obras.repository.UsuarioRepository;
-import com.alan.api_autores_obras.security.JwtService;
+
+import com.alan.todo_list.dto.auth.AuthResponse;
+import com.alan.todo_list.dto.auth.CadastroRequest;
+import com.alan.todo_list.dto.auth.LoginRequest;
+import com.alan.todo_list.entity.Usuario;
+import com.alan.todo_list.exception.ResourceNotFoundException;
+import com.alan.todo_list.mapper.AuthMapper;
+import com.alan.todo_list.repository.UsuarioRepository;
+import com.alan.todo_list.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

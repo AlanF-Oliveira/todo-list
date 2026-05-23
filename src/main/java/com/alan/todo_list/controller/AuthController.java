@@ -1,14 +1,15 @@
-package com.alan.api_autores_obras.controller;
+package com.alan.todo_list.controller;
 
-import com.alan.api_autores_obras.dto.auth.AuthResponse;
-import com.alan.api_autores_obras.dto.auth.CadastroRequest;
-import com.alan.api_autores_obras.dto.auth.LoginRequest;
-import com.alan.api_autores_obras.service.AuthService;
+
+import com.alan.todo_list.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
