@@ -18,7 +18,7 @@ public class TodoRepository {
             return new ArrayList<>(list);
         } else {
             System.out.println();
-            System.out.println("====Lista vazia====2");
+            System.out.println("====Lista vazia====");
             return  new ArrayList<>();
         }
     }

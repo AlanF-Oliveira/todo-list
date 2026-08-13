@@ -27,7 +27,7 @@ public class Menu {
             System.out.println(" 6) Apagar uma tarefa.");
             System.out.println(" 7) Apagar todas as tarefas.");
             System.out.println(" 8) Fechar o programa.");
-            System.out.print("Escolha entre 1 a 7: ");
+            System.out.print("Escolha entre 1 a 8: ");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -72,7 +72,6 @@ public class Menu {
             }
         }
         sc.close();
-        return;
     }
 
     public void createTodo() {
@@ -80,7 +79,7 @@ public class Menu {
         sc.nextLine();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Digite a tarefa que voê quer adicionar: ");
-        System.out.print("Nome: ");
+        System.out.print("Tarefa: ");
         String name = sc.nextLine();
 
         System.out.print("Descricão da tarefa: ");
