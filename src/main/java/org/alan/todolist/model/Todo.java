@@ -84,4 +84,17 @@ public class Todo {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", finalDate=" + finalDate +
+                ", priority=" + priority +
+                ", category='" + category + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

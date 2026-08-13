@@ -9,8 +9,8 @@ public class TodoRepository {
 
     private List<Todo> list = new ArrayList<>();
 
-    public void create(Todo todo) {
-        list.add(todo);
+    public void create(int index, Todo todo) {
+        list.add(index ,todo);
     }
 
     public List<Todo> listAll() {
@@ -47,7 +47,7 @@ public class TodoRepository {
             todo.setStatus(todoRequest.getStatus());
 
         } else {
-            throw new NullPointerException("Parametro inválido ");
+            throw new NullPointerException("Parâmetro inválido ");
         }
         return todo;
     }
