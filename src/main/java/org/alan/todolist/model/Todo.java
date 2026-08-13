@@ -5,7 +5,8 @@ import org.alan.todolist.model.enums.Status;
 import java.time.LocalDate;
 
 public class Todo {
-
+    private static int nextId = 1;
+    private final int id;
     private String name;
     private String description;
     private LocalDate finalDate;
@@ -14,6 +15,7 @@ public class Todo {
     private Status status;
 
     public Todo(String name, String description, LocalDate finalDate, Integer priority, String category, Status status) {
+        this.id = nextId++;
         this.name = name;
         this.description = description;
         this.finalDate = finalDate;
@@ -73,5 +75,13 @@ public class Todo {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public int getId() {
+        return id;
     }
 }
