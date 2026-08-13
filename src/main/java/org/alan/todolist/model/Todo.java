@@ -56,7 +56,7 @@ public class Todo {
         if (priority != null && priority > 0 && priority <= 5) {
             this.priority = priority;
         }else {
-            throw  new IllegalArgumentException("Valor inválido.");
+            System.out.println("Valor inválido.");
         }
 
     }
@@ -87,14 +87,12 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", finalDate=" + finalDate +
-                ", priority=" + priority +
-                ", category='" + category + '\'' +
-                ", status=" + status +
-                '}';
+        return  "id = " + id
+                + " | Tarefa = " + name
+                + " | Descrição = " + description
+                + " | Data de término = " + finalDate
+                + " | Prioridade = " + priority
+                + " | Categoria = " + category
+                + " | Status = " + getStatus();
     }
 }

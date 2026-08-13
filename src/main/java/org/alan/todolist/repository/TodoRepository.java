@@ -10,14 +10,20 @@ public class TodoRepository {
     private List<Todo> list = new ArrayList<>();
 
     public void create(int index, Todo todo) {
-        list.add(index ,todo);
+        list.add(index, todo);
     }
 
     public List<Todo> listAll() {
-        return new ArrayList<>(list);
+        if (!list.isEmpty()) {
+            return new ArrayList<>(list);
+        } else {
+            System.out.println();
+            System.out.println("====Lista vazia====2");
+            return  new ArrayList<>();
+        }
     }
 
-    public void delete(int id) {
+    public void deleteTodoById(int id) {
         for (Todo todo : list) {
             if (todo.getId() == id) {
                 list.remove(todo);
@@ -34,6 +40,10 @@ public class TodoRepository {
             }
         }
         throw new IllegalArgumentException("Id not found ");
+    }
+
+    public void deleteAllTodo() {
+        list.clear();
     }
 
     public Todo updateTodo(int id, Todo todoRequest) {

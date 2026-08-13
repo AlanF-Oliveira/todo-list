@@ -57,7 +57,11 @@ public class TodoService {
         return result;
     }
 
-    public void deleteTodo(int id){
-        repository.delete(id);
+    public void deleteTodoById(int id){
+        repository.deleteTodoById(id);
+    }
+
+    public void delelteAllTodo(){
+        repository.deleteAllTodo();
     }
 }
