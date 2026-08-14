@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.alan'
@@ -7,6 +8,10 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = 'org.alan.todolist.TodoList'
 }
 
 dependencies {
@@ -17,4 +22,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+run {
+    standardInput = System.in
 }
