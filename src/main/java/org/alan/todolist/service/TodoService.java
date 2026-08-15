@@ -4,6 +4,7 @@ import org.alan.todolist.model.Todo;
 import org.alan.todolist.model.enums.Status;
 import org.alan.todolist.repository.TodoRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +64,16 @@ public class TodoService {
 
     public void delelteAllTodo(){
         repository.deleteAllTodo();
+    }
+
+    public List<Todo> checkPendingAlarms() {
+        List<Todo> result = new ArrayList<>();
+        LocalDateTime now = LocalDateTime.now();
+        for (Todo todo : repository.listAll()) {
+            if (todo.hasPendingAlarm(now)) {
+                result.add(todo);
+            }
+        }
+        return result;
     }
 }

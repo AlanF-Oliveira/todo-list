@@ -2,26 +2,47 @@ package org.alan.todolist.model;
 
 import org.alan.todolist.model.enums.Status;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Todo {
     private static int nextId = 1;
     private final int id;
     private String name;
     private String description;
-    private LocalDate finalDate;
+    private LocalDateTime finalDateTime;
     private Integer priority;
     private String category;
     private Status status;
+    private List<Alarm> alarms = new ArrayList<>();
 
-    public Todo(String name, String description, LocalDate finalDate, Integer priority, String category, Status status) {
+    public Todo(String name, String description, LocalDateTime finalDateTime, Integer priority, String category, Status status) {
         this.id = nextId++;
         this.name = name;
         this.description = description;
-        this.finalDate = finalDate;
+        this.finalDateTime = finalDateTime;
         setPriority(priority);
         this.category = category;
         this.status = status;
+    }
+
+    public LocalDateTime getFinalDateTime() {
+        return finalDateTime;
+    }
+
+    public void setFinalDateTime(LocalDateTime finalDateTime) {
+        this.finalDateTime = finalDateTime;
+    }
+
+    public List<Alarm> getAlarms() {
+        return alarms;
+    }
+
+    public void addAlarm(Alarm alarm) {
+        alarms.add(alarm);
     }
 
     public String getName() {
@@ -40,14 +61,6 @@ public class Todo {
         this.description = description;
     }
 
-    public LocalDate getFinalDate() {
-        return finalDate;
-    }
-
-    public void setFinalDate(LocalDate finalDate) {
-        this.finalDate = finalDate;
-    }
-
     public Integer getPriority() {
         return priority;
     }
@@ -55,7 +68,7 @@ public class Todo {
     public void setPriority(Integer priority) {
         if (priority != null && priority > 0 && priority <= 5) {
             this.priority = priority;
-        }else {
+        } else {
             System.out.println("Valor inválido.");
         }
 
@@ -85,12 +98,26 @@ public class Todo {
         return id;
     }
 
+    public boolean hasPendingAlarm(LocalDateTime now) {
+        if (status == Status.DONE || alarms.isEmpty()) {
+            return false;
+        }
+        for (Alarm alarm : alarms) {
+            LocalDateTime triggerAt = finalDateTime.minus(alarm.getReminderOffset());
+            if (!now.isBefore(triggerAt)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
-        return  "id = " + id
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return "id = " + id
                 + " | Tarefa = " + name
                 + " | Descrição = " + description
-                + " | Data de término = " + finalDate
+                + " | Data de término = " + finalDateTime.format(dtf)
                 + " | Prioridade = " + priority
                 + " | Categoria = " + category
                 + " | Status = " + getStatus();

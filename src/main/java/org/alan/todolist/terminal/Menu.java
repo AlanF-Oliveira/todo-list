@@ -1,10 +1,12 @@
 package org.alan.todolist.terminal;
 
+import org.alan.todolist.model.Alarm;
 import org.alan.todolist.model.Todo;
 import org.alan.todolist.model.enums.Status;
 import org.alan.todolist.service.TodoService;
 
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
@@ -13,10 +15,12 @@ public class Menu {
 
     private Scanner sc = new Scanner(System.in);
     private TodoService todoService = new TodoService();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public void start() {
         boolean isActive = true;
         while (isActive) {
+            checkAlarms();
             System.out.println();
             System.out.println("O que deseja fazer: ");
             System.out.println(" 1) Adicionar uma tarefa.");
@@ -77,7 +81,6 @@ public class Menu {
     public void createTodo() {
         System.out.println();
         sc.nextLine();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Digite a tarefa que voê quer adicionar: ");
         System.out.print("Tarefa: ");
         String name = sc.nextLine();
@@ -85,8 +88,8 @@ public class Menu {
         System.out.print("Descricão da tarefa: ");
         String description = sc.nextLine();
 
-        System.out.print("Data final da tarefa: ");
-        LocalDate date = LocalDate.parse(sc.nextLine(), dtf);
+        System.out.print("Data a data final da tarefa (dd/MM/yyyy HH:mm): ");
+        LocalDateTime date = LocalDateTime.parse(sc.nextLine(), dtf);
 
         System.out.print("Nível de prioridade (1~5): ");
         int priority = sc.nextInt();
@@ -112,9 +115,25 @@ public class Menu {
         }
 
         Todo todo = new Todo(name, description, date, priority, category, status);
+
+        System.out.print("Habilitar alarme? (s/n): ");
+        String alarm = sc.nextLine();
+        if (alarm.equalsIgnoreCase("s")) {
+            boolean addingMore = true;
+            while (addingMore) {
+                System.out.print("Avisar quantas horas antes do prazo: ");
+                long hours = Long.parseLong(sc.nextLine());
+                todo.addAlarm(new Alarm(Duration.ofHours(hours)));
+
+                System.out.print("Adicionar outro alarme? (s/n): ");
+                addingMore = sc.nextLine().equalsIgnoreCase("s");
+            }
+        }
+
         todoService.addTodo(todo);
         System.out.println();
         System.out.println("Tarefa adicionada:");
+        System.out.println();
         System.out.println(todo);
     }
 
@@ -162,6 +181,24 @@ public class Menu {
 
     public void deleteALlTodo() {
         todoService.delelteAllTodo();
+    }
+
+    private void checkAlarms() {
+        List<Todo> pending = todoService.checkPendingAlarms();
+        String red = "\u001B[31m";
+        String reset = "\u001B[0m";
+        if (!pending.isEmpty()){
+            System.out.println();
+            System.out.println("============================================================================================================");
+        }
+        for (Todo todo : pending) {
+            System.out.println("//=======// " + red + " Alarme: " + reset + todo.getName() + " vence em " + todo.getFinalDateTime().format(dtf) + " //=======//");
+        }
+        if (!pending.isEmpty()){
+            System.out.println("============================================================================================================");
+            System.out.println();
+        }
+
     }
 }
 
