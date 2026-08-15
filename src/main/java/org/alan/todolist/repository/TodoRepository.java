@@ -52,7 +52,7 @@ public class TodoRepository {
             todo.setName(todoRequest.getName());
             todo.setCategory((todoRequest.getCategory()));
             todo.setDescription(todoRequest.getDescription());
-            todo.setFinalDate(todoRequest.getFinalDate());
+            todo.setFinalDateTime(todoRequest.getFinalDateTime());
             todo.setPriority(todoRequest.getPriority());
             todo.setStatus(todoRequest.getStatus());
 
