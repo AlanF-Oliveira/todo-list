@@ -57,7 +57,7 @@ public class TodoRepository {
             todo.setStatus(todoRequest.getStatus());
 
         } else {
-            throw new NullPointerException("Parâmetro inválido ");
+                throw new NullPointerException("Parâmetro inválido ");
         }
         return todo;
     }
