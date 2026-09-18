@@ -24,47 +24,69 @@ public class TodoService {
         return todo;
     }
 
-    public List<Todo> listAll(){
-        return repository.listAll();
-    }
-
-    public List<Todo> listByCategory(String category){
-        List<Todo> result = new ArrayList<>();
-        for(Todo todo : repository.listAll()){
-            if(todo.getCategory().equalsIgnoreCase(category)){
-                result.add(todo);
-            }
+    public List<Todo> listAll() {
+        List<Todo> lista= repository.listAll();
+        if(lista.isEmpty()){
+            System.out.println("===== Lista Vazia =====");
         }
-        return result;
+        return lista;
     }
 
-    public List<Todo> listByPriority(int priority){
+    public Todo findById(int id){
+        return repository.findById(id);
+    }
+
+    public List<Todo> listByCategory(String category) {
         List<Todo> result = new ArrayList<>();
         for (Todo todo : repository.listAll()) {
-            if(todo.getPriority() == priority){
+            if (todo.getCategory().equalsIgnoreCase(category)) {
                 result.add(todo);
             }
+        }
+        if (result.isEmpty()) {
+            throw new ArrayIndexOutOfBoundsException("Categoria não encontrada");
         }
         return result;
     }
 
-    public List<Todo> listByStatus(Status status){
+    public List<Todo> listByPriority(int priority) {
         List<Todo> result = new ArrayList<>();
-        for (Todo todo : repository.listAll()){
-            if (todo.getStatus() == status){
+        for (Todo todo : repository.listAll()) {
+            if (todo.getPriority() == priority) {
                 result.add(todo);
             }
+        }
+        if (result.isEmpty()) {
+            throw new ArrayIndexOutOfBoundsException("Prioridade não encontrada");
         }
         return result;
     }
 
-    public void deleteTodoById(int id){
+    public List<Todo> listByStatus(Status status) {
+        List<Todo> result = new ArrayList<>();
+        for (Todo todo : repository.listAll()) {
+            if (todo.getStatus() == status) {
+                result.add(todo);
+            }
+        }
+        if (result.isEmpty()) {
+            throw new ArrayIndexOutOfBoundsException("Status não encontrado");
+        }
+        return result;
+    }
+
+    public void deleteTodoById(int id) {
         repository.deleteTodoById(id);
     }
 
-    public void delelteAllTodo(){
+    public void delelteAllTodo() {
         repository.deleteAllTodo();
     }
+
+    public Todo updateTodo(int id, Todo todo) {
+        return repository.updateTodo(id, todo);
+    }
+
 
     public List<Todo> checkPendingAlarms() {
         List<Todo> result = new ArrayList<>();
