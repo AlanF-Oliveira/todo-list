@@ -1,4 +1,3 @@
-
 let todoList = [];
 let nextId = 1;
 
@@ -15,9 +14,9 @@ const btnSave = document.getElementById("btn-save");
 const btnCancel = document.getElementById("btn-cancel");
 const todoListDiv = document.getElementById("todo-list");
 
+
 function salvarTarefa() {
-    console.log("todoId:", todoIdInput.value);
-    console.log("todoList:", todoList);
+
     let name = nameInput.value;
     let description = descriptionInput.value;
     let date = dateInput.value;
@@ -51,10 +50,7 @@ function salvarTarefa() {
 
     } else {
 
-        console.log("idProcurado:", idProcurado);
-        console.log("tarefa encontrada:", tarefa);
         const idProcurado = Number(todoIdInput.value);
-
         const tarefa = todoList.find(function (todo) {
             return todo.id === idProcurado;
         });
@@ -68,6 +64,8 @@ function salvarTarefa() {
         tarefa.alarm = alarm;
 
     }
+
+    salvarNoLocalStorage();
     listarTarefas();
     todoIdInput.value = "";
     document.getElementById("form-global").reset();
@@ -89,23 +87,46 @@ function listarTarefas() {
             );
         }
         const html = `<div class="card mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                 <h5 class="card-title">${todo.name}</h5>
-                    <div class="d-flex flex-column align-items-end gap-2">
-                        <span class="badge bg-primary">${todo.status}</span>
-                        <div class="d-flex gap-1">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editarTarefa(${todo.id})">Editar</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="excluirTarefa(${todo.id})">Excluir</button>
-                        </div>
-                    </div>
-                </div>
-                <p class="card-text text-muted">${todo.description}</p>
-                <p class="card-text">${todo.category}</p>
-                <p class="card-text">Prioridade: ${todo.priority}</p>
-                <p class="card-text">${todo.alarm ? `Alarme às: ${alarmDateTime.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}` : "Sem alarme"} </p>
-                <p class="card-text">${todo.finalDateTime.toLocaleString("pt-BR")}</p>
+        <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <input 
+                    type="checkbox" 
+                    class="form-check-input tarefa-checkbox" 
+                    value="${todo.id}"
+                >
+                <h5 class="card-title mb-0">${todo.name}</h5>
             </div>
+
+            <div class="d-flex flex-column align-items-end gap-2">
+                <span class="badge bg-primary">${todo.status}</span>
+
+                <div class="d-flex gap-1">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editarTarefa(${todo.id})">
+                        Editar
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="excluirTarefa(${todo.id})">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <p class="card-text text-muted">${todo.description}</p>
+        <p class="card-text">${todo.category}</p>
+        <p class="card-text">Prioridade: ${todo.priority}</p>
+        <p class="card-text">
+            ${todo.alarm
+                ? `Alarme às: ${alarmDateTime.toLocaleTimeString("pt-BR", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                })}`
+                : "Sem alarme"
+            }
+        </p>
+        <p class="card-text">${todo.finalDateTime.toLocaleString("pt-BR")}</p>
+        </div>
         </div>`;
         todoListDiv.innerHTML += html;
     });
@@ -115,6 +136,7 @@ function excluirTarefa(id) {
     todoList = todoList.filter(function (todo) {
         return todo.id !== id;
     })
+    salvarNoLocalStorage();
     listarTarefas();
 }
 
@@ -149,6 +171,63 @@ function editarTarefa(id) {
     });
 }
 
+function salvarNoLocalStorage() {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+
+function carregarDoLocalStorage() {
+    const dados = localStorage.getItem("todoList");
+
+    if (dados) {
+        todoList = JSON.parse(dados);
+
+        todoList.forEach(function (todo) {
+            todo.finalDateTime = new Date(todo.finalDateTime);
+        });
+
+        if (todoList.length > 0) {
+            nextId = Math.max(...todoList.map(todo => todo.id)) + 1;
+        }
+    }
+}
+
+const statusMultipleInput = document.getElementById("status-multiple");
+const btnStatusMultiple = document.getElementById("btn-status-multiple");
+
+btnStatusMultiple.addEventListener("click", function () {
+
+    const novoStatus = statusMultipleInput.value;
+
+    if (!novoStatus) {
+        alert("Selecione um status.");
+        return;
+    }
+
+    const tarefasSelecionadas = document.querySelectorAll(".tarefa-checkbox:checked");
+
+    if (tarefasSelecionadas.length === 0) {
+        alert("Selecione pelo menos uma tarefa.");
+        return;
+    }
+
+    tarefasSelecionadas.forEach(function (checkbox) {
+
+        const id = Number(checkbox.value);
+
+        const tarefa = todoList.find(function (todo) {
+            return todo.id === id;
+        });
+
+        tarefa.status = novoStatus;
+    });
+
+    salvarNoLocalStorage();
+    listarTarefas();
+
+    statusMultipleInput.selectedIndex = 0;
+});
+
+
 btnCancel.addEventListener("click", function () {
     document.getElementById("form-global").reset();
 
@@ -165,3 +244,6 @@ form.addEventListener("submit", function (event) {
 
     salvarTarefa();
 });
+
+carregarDoLocalStorage();
+listarTarefas();

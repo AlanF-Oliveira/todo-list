@@ -32,6 +32,11 @@ A interface web permite criar, editar e excluir tarefas, além de configurar ala
 
 Ao cadastrar uma nova tarefa, ela é inserida automaticamente na posição correta da lista, mantendo a ordenação por prioridade.
 
+
+## Persistência
+
+As tarefas são persistidas no Local Storage. Também é possível selecionar **várias** **tarefas** e alterar seus **status** simultaneamente.
+
 ## Alarme de tarefas
 
 Tarefas podem ter alarmes configurados, avisando uma ou mais horas antes do prazo. A cada retorno ao menu, alarmes pendentes são exibidos. Tarefas `DONE` não disparam alarme.
