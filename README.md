@@ -35,3 +35,14 @@ Ao cadastrar uma nova tarefa, ela é inserida automaticamente na posição corre
 ## Alarme de tarefas
 
 Tarefas podem ter alarmes configurados, avisando uma ou mais horas antes do prazo. A cada retorno ao menu, alarmes pendentes são exibidos. Tarefas `DONE` não disparam alarme.
+
+
+## Testes
+
+Testes com Spock, cobrindo todos os métodos CRUD da Service.
+
+## Como executar os testes
+
+```bash
+./gradlew test
+```

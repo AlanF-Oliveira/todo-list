@@ -198,8 +198,8 @@ class TodoServiceSpec extends Specification {
         def resultado = service.updateTodo(todo.id, novoTodo)
 
         then: "compara se o update foi feito com sucesso"
-        resultado.name == todo.name
+        resultado.name == novoTodo.name
+        resultado.category == novoTodo.category
         resultado.id == todo.id
-        resultado.category == todo.category
     }
 }
