@@ -30,7 +30,8 @@ public class Menu {
             System.out.println(" 5) Listar tarefas por status.");
             System.out.println(" 6) Apagar uma tarefa.");
             System.out.println(" 7) Apagar todas as tarefas.");
-            System.out.println(" 8) Fechar o programa.");
+            System.out.println(" 8) Alterar um TODO.");
+            System.out.println(" 9) Fechar o programa.");
             System.out.print("Escolha entre 1 a 8: ");
             int option = sc.nextInt();
             switch (option) {
@@ -71,6 +72,12 @@ public class Menu {
                     deleteALlTodo();
                     break;
                 case 8:
+                    System.out.println();
+                    System.out.print("Digite o id da tarefa que você deseja alterar: ");
+                    int idUpdate = sc.nextInt();
+                    updateTodo(idUpdate);
+                    break;
+                case 9:
                     isActive = false;
                     break;
             }
@@ -81,7 +88,7 @@ public class Menu {
     public void createTodo() {
         System.out.println();
         sc.nextLine();
-        System.out.println("Digite a tarefa que voê quer adicionar: ");
+        System.out.println("Digite a tarefa que você quer adicionar: ");
         System.out.print("Tarefa: ");
         String name = sc.nextLine();
 
@@ -198,7 +205,58 @@ public class Menu {
             System.out.println("============================================================================================================");
             System.out.println();
         }
+    }
 
+    public void updateTodo(int id){
+        System.out.println("Digite a tarefa que você quer alterar: ");
+        System.out.print("Tarefa: ");
+        String name = sc.nextLine();
+
+        System.out.print("Descrição da tarefa: ");
+        String description = sc.nextLine();
+
+        System.out.print("Data final da tarefa (dd/MM/yyyy HH:mm): ");
+        LocalDateTime date = LocalDateTime.parse(sc.nextLine(), dtf);
+
+        System.out.print("Nível de prioridade (1~5): ");
+        int priority = sc.nextInt();
+        while (priority < 1 || priority > 5) {
+            System.out.println("Valor inválido");
+            System.out.print("Nível de prioridade (1~5): ");
+            priority = sc.nextInt();
+        }
+
+        System.out.print("Categoria: ");
+        sc.nextLine();
+        String category = sc.nextLine();
+
+        Status status = null;
+        while (status == null) {
+            System.out.print("Digite o Status (TODO/DOING/DONE): ");
+
+            try {
+                status = Status.valueOf(sc.nextLine().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Status inválido.");
+            }
+        }
+
+        Todo todo = new Todo(name, description, date, priority, category, status);
+
+        System.out.print("Habilitar alarme? (s/n): ");
+        String alarm = sc.nextLine();
+        if (alarm.equalsIgnoreCase("s")) {
+            boolean addingMore = true;
+            while (addingMore) {
+                System.out.print("Avisar quantas horas antes do prazo: ");
+                long hours = Long.parseLong(sc.nextLine());
+                todo.addAlarm(new Alarm(Duration.ofHours(hours)));
+
+                System.out.print("Adicionar outro alarme? (s/n): ");
+                addingMore = sc.nextLine().equalsIgnoreCase("s");
+            }
+        }
+        todoService.updateTodo(id, todo);
     }
 }
 
