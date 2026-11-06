@@ -95,6 +95,8 @@ automatizados para `frontend/`.
 
 ## 5. Restrições para desenvolvimento e refatoração
 
+- A especificação oficial da refatoração está em [docs/spec.md](./docs/spec.md).
+- O plano de execução da refatoração está em [docs/plano.md](./docs/plano.md).
 - Antes de alterar código, produza ou atualize uma especificação verificável para o
   comportamento pretendido, seguindo SDD (Spec-Driven Development).
 - Preserve as funcionalidades existentes do backend Java e da interface web, salvo
