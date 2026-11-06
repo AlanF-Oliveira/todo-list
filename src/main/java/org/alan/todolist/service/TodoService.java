@@ -4,8 +4,8 @@ import org.alan.todolist.model.Todo;
 import org.alan.todolist.model.enums.Status;
 import org.alan.todolist.repository.TodoRepository;
 
-import java.time.LocalDateTime;
 import java.time.Clock;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -45,13 +45,13 @@ public class TodoService {
 
     public List<Todo> listAll() {
         List<Todo> todoList = repository.listAll();
-        if(todoList.isEmpty()){
+        if (todoList.isEmpty()) {
             System.out.println("===== Lista Vazia =====");
         }
         return todoList;
     }
 
-    public Todo findById(int id){
+    public Todo findById(int id) {
         return repository.findById(id);
     }
 
@@ -68,13 +68,13 @@ public class TodoService {
     }
 
     private List<Todo> filter(Predicate<Todo> condition) {
-        List<Todo> result = new ArrayList<>();
+        List<Todo> matchingTodos = new ArrayList<>();
         for (Todo todo : repository.listAll()) {
             if (condition.test(todo)) {
-                result.add(todo);
+                matchingTodos.add(todo);
             }
         }
-        return result;
+        return matchingTodos;
     }
 
     public void deleteTodoById(int id) {
@@ -89,15 +89,14 @@ public class TodoService {
         return repository.updateTodo(id, todo);
     }
 
-
     public List<Todo> checkPendingAlarms() {
-        List<Todo> result = new ArrayList<>();
+        List<Todo> pendingTodos = new ArrayList<>();
         LocalDateTime now = LocalDateTime.now(clock);
         for (Todo todo : repository.listAll()) {
             if (todo.hasPendingAlarm(now)) {
-                result.add(todo);
+                pendingTodos.add(todo);
             }
         }
-        return result;
+        return pendingTodos;
     }
 }

@@ -13,19 +13,19 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private final TodoService todoService = new TodoService();
-    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public void start() {
         boolean isActive = true;
         while (isActive) {
             checkAlarms();
             showMenu();
-            int option = sc.nextInt();
+            int option = scanner.nextInt();
             isActive = handleOption(option);
         }
-        sc.close();
+        scanner.close();
     }
 
     private boolean handleOption(int option) {
@@ -90,35 +90,35 @@ public class Menu {
         if (!updating) {
             System.out.println();
         }
-        sc.nextLine();
+        scanner.nextLine();
         System.out.println("Digite a tarefa que você quer " + (updating ? "alterar" : "adicionar") + ": ");
         System.out.print("Tarefa: ");
-        String name = sc.nextLine();
+        String name = scanner.nextLine();
 
         System.out.print("Descricão da tarefa: ");
-        String description = sc.nextLine();
+        String description = scanner.nextLine();
 
         System.out.print("Data a data final da tarefa (dd/MM/yyyy HH:mm): ");
-        LocalDateTime date = LocalDateTime.parse(sc.nextLine(), dtf);
+        LocalDateTime date = LocalDateTime.parse(scanner.nextLine(), dateTimeFormatter);
 
         System.out.print("Nível de prioridade (1~5): ");
-        int priority = sc.nextInt();
+        int priority = scanner.nextInt();
         while (priority < 1 || priority > 5) {
             System.out.println("Valor inválido");
             System.out.print("Nível de prioridade (1~5): ");
-            priority = sc.nextInt();
+            priority = scanner.nextInt();
         }
 
         System.out.print("Categoria: ");
-        sc.nextLine();
-        String category = sc.nextLine();
+        scanner.nextLine();
+        String category = scanner.nextLine();
 
         Status status = null;
         while (status == null) {
             System.out.print("Digite o Status (TODO/DOING/DONE): ");
 
             try {
-                status = Status.valueOf(sc.nextLine().toUpperCase());
+                status = Status.valueOf(scanner.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Status inválido.");
             }
@@ -175,7 +175,7 @@ public class Menu {
             System.out.println("============================================================================================================");
         }
         for (Todo todo : pending) {
-            System.out.println("//=======// " + red + " Alarme: " + reset + todo.getName() + " vence em " + todo.getFinalDateTime().format(dtf) + " //=======//");
+            System.out.println("//=======// " + red + " Alarme: " + reset + todo.getName() + " vence em " + todo.getFinalDateTime().format(dateTimeFormatter) + " //=======//");
         }
         if (!pending.isEmpty()){
             System.out.println("============================================================================================================");
@@ -189,41 +189,41 @@ public class Menu {
     }
 
     private String readCategory() {
-        sc.nextLine();
+        scanner.nextLine();
         System.out.println();
         System.out.print("Digite a categoria: ");
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     private int readPriority() {
         System.out.println();
         System.out.print("Digite a prioridade: ");
-        return sc.nextInt();
+        return scanner.nextInt();
     }
 
     private Status readStatus() {
         System.out.println();
         System.out.print("Digite o status: ");
-        sc.nextLine();
-        return Status.valueOf(sc.nextLine());
+        scanner.nextLine();
+        return Status.valueOf(scanner.nextLine());
     }
 
     private int readId(String prompt) {
         System.out.println();
         System.out.print(prompt);
-        return sc.nextInt();
+        return scanner.nextInt();
     }
 
     private void addAlarms(Todo todo) {
         System.out.print("Habilitar alarme? (s/n): ");
-        if (sc.nextLine().equalsIgnoreCase("s")) {
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
             boolean addingMore = true;
             while (addingMore) {
                 System.out.print("Avisar quantas horas antes do prazo: ");
-                long hours = Long.parseLong(sc.nextLine());
+                long hours = Long.parseLong(scanner.nextLine());
                 todo.addAlarm(new Alarm(Duration.ofHours(hours)));
                 System.out.print("Adicionar outro alarme? (s/n): ");
-                addingMore = sc.nextLine().equalsIgnoreCase("s");
+                addingMore = scanner.nextLine().equalsIgnoreCase("s");
             }
         }
     }

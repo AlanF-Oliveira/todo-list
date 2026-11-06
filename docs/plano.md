@@ -191,7 +191,7 @@ Os contratos aprovados foram aplicados ao modelo, repositório e serviço, com
 testes determinísticos para alarmes, cópia defensiva e erros. `./gradlew test`
 passou.
 
-## Tarefa 5 — Aplicar limpeza incremental e Regra do Escoteiro
+## Tarefa 5 — Aplicar limpeza incremental e Regra do Escoteiro ✅ Concluída
 
 ### Objetivo
 
@@ -229,6 +229,13 @@ funcionais por preferência de estilo.
 ### Commit sugerido
 
 `refactor: improve backend readability`
+
+### Evidência
+
+Foram corrigidos nomes locais, visibilidade e consistência de formatação, sem
+alteração de contratos ou regras de negócio. Não há comentários de código
+obsoletos nos arquivos de produção ou testes. `./gradlew test` e
+`printf '9\n' | ./gradlew run` passaram.
 
 ## Tarefa 6 — Validar e encerrar a refatoração
 
