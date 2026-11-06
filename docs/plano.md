@@ -11,7 +11,7 @@ As tarefas são independentes no sentido de possuírem um objetivo e uma verific
 próprios, mas devem ser executadas na ordem indicada. Cada tarefa deve resultar em
 um incremento pequeno, revisável e passível de commit separado.
 
-## Tarefa 1 — Caracterizar o comportamento atual
+## Tarefa 1 — Caracterizar o comportamento atual ✅ Concluída
 
 ### Objetivo
 
@@ -49,7 +49,13 @@ resultados, estados, mensagens e exceções que não podem mudar acidentalmente.
 
 `test: characterize current todo backend behavior`
 
-## Tarefa 2 — Aprovar decisões de contrato
+### Evidência
+
+Os testes de caracterização e casos de borda foram adicionados em
+`src/test/groovy/org/alan/todolist/service/TodoServiceSpec.groovy` e
+`./gradlew test` passou.
+
+## Tarefa 2 — Aprovar decisões de contrato ✅ Concluída
 
 ### Objetivo
 
@@ -89,7 +95,11 @@ alterar qualquer comportamento potencialmente observável.
 
 `docs: approve backend refactoring contracts`
 
-## Tarefa 3 — Extrair funções e eliminar duplicação
+### Evidência
+
+As decisões aprovadas estão registradas na seção 5.1 de `docs/spec.md`.
+
+## Tarefa 3 — Extrair funções e eliminar duplicação ✅ Concluída
 
 ### Objetivo
 
@@ -128,7 +138,13 @@ serviço, sem alterar os contratos aprovados.
 
 `refactor: extract cohesive backend operations`
 
-## Tarefa 4 — Ajustar modelo, encapsulamento e tratamento de erros
+### Evidência
+
+O menu passou a usar handlers e funções compartilhadas para leitura, alarmes e
+impressão; os filtros do serviço foram extraídos para uma operação comum.
+`./gradlew test` passou.
+
+## Tarefa 4 — Ajustar modelo, encapsulamento e tratamento de erros ✅ Concluída
 
 ### Objetivo
 
@@ -168,6 +184,12 @@ melhorando as fronteiras do modelo sem introduzir regra nova.
 ### Commit sugerido
 
 `refactor: clarify backend boundaries and error contracts`
+
+### Evidência
+
+Os contratos aprovados foram aplicados ao modelo, repositório e serviço, com
+testes determinísticos para alarmes, cópia defensiva e erros. `./gradlew test`
+passou.
 
 ## Tarefa 5 — Aplicar limpeza incremental e Regra do Escoteiro
 
@@ -254,4 +276,3 @@ Não iniciar uma tarefa posterior quando:
 - houver decisão de contrato pendente;
 - `./gradlew test` estiver falhando sem causa conhecida e registrada;
 - o diff indicar alteração fora do escopo.
-

@@ -180,6 +180,26 @@ parte de uma refatoração automática:
   com o nome antigo;
 - forma de fornecer o horário ao serviço para testes determinísticos.
 
+### 5.1 Decisões aprovadas
+
+As decisões abaixo foram aprovadas para esta refatoração:
+
+- filtros sem resultado retornam lista vazia;
+- IDs inexistentes lançam `NoSuchElementException` com a mensagem
+  `Todo não encontrado`;
+- argumentos nulos continuam lançando `NullPointerException` com a mensagem
+  `Parâmetro inválido`;
+- prioridades nulas ou fora do intervalo de 1 a 5 lançam
+  `IllegalArgumentException` com a mensagem `Valor inválido.`;
+- IDs permanecem inteiros crescentes e são preservados durante atualizações;
+- `getAlarms` retorna uma cópia da lista de alarmes;
+- `TodoService` recebe `TodoRepository` por injeção, mantendo um construtor
+  padrão para o uso existente;
+- `delelteAllTodo` será substituído pelo nome corrigido `deleteAllTodo`, sem
+  manter o método antigo;
+- o horário dos alarmes será fornecido por `Clock`, permitindo testes
+  determinísticos.
+
 Cada decisão aprovada deve ser registrada nesta especificação antes da
 implementação e acompanhada por testes de aceitação.
 
