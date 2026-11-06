@@ -234,3 +234,17 @@ implementação e acompanhada por testes de aceitação.
 6. Ajustar tratamento de erros e encapsulamento somente conforme decisões
    aprovadas.
 7. Executar `./gradlew test`, revisar o diff e verificar manualmente o menu Java.
+
+## 8. Validação final
+
+A refatoração foi validada com:
+
+- `./gradlew test`, com execução bem-sucedida da suíte Spock;
+- cenário automatizado de `./gradlew run` cobrindo criação, listagem, filtros,
+  atualização, exclusão individual, exclusão total e saída;
+- revisão final sem alterações pendentes de código fora dos arquivos previstos;
+- confirmação de que `frontend/`, arquivos gerados e configurações da IDE não
+  foram alterados.
+
+As limitações permanecem as previstas no escopo: não há testes automatizados
+específicos para a interface web nem integração entre frontend e backend.

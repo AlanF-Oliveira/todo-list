@@ -237,7 +237,7 @@ alteração de contratos ou regras de negócio. Não há comentários de código
 obsoletos nos arquivos de produção ou testes. `./gradlew test` e
 `printf '9\n' | ./gradlew run` passaram.
 
-## Tarefa 6 — Validar e encerrar a refatoração
+## Tarefa 6 — Validar e encerrar a refatoração ✅ Concluída
 
 ### Objetivo
 
@@ -270,6 +270,12 @@ especificados, encerrando a atividade com evidências verificáveis.
 ### Commit sugerido
 
 `chore: validate clean code refactoring`
+
+### Evidência
+
+`./gradlew test` passou. O fluxo automatizado do menu cobriu criação, listagem,
+filtros, atualização, exclusão individual, exclusão total e saída com sucesso.
+O diff final de código ficou vazio e nenhum arquivo fora do escopo foi alterado.
 
 ## Ordem e regra de bloqueio
 
