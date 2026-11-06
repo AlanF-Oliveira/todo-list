@@ -71,5 +71,3 @@ As principais correções realizadas no backend foram:
 Essas mudanças melhoraram a separação de responsabilidades, reduziram a
 duplicação, tornaram os contratos de erro claros e facilitaram a manutenção e
 validação do código sem alterar as funcionalidades previstas da aplicação.
-
-O processo completo está documentado em [`RELATORIO.md`](RELATORIO.md).
