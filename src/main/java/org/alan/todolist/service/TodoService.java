@@ -5,12 +5,31 @@ import org.alan.todolist.model.enums.Status;
 import org.alan.todolist.repository.TodoRepository;
 
 import java.time.LocalDateTime;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class TodoService {
 
-    private TodoRepository repository = new TodoRepository();
+    private final TodoRepository repository;
+    private final Clock clock;
+
+    public TodoService() {
+        this(new TodoRepository(), Clock.systemDefaultZone());
+    }
+
+    public TodoService(TodoRepository repository) {
+        this(repository, Clock.systemDefaultZone());
+    }
+
+    public TodoService(TodoRepository repository, Clock clock) {
+        if (repository == null || clock == null) {
+            throw new NullPointerException("Parâmetro inválido");
+        }
+        this.repository = repository;
+        this.clock = clock;
+    }
 
     public Todo addTodo(Todo todo) {
         List<Todo> todoList = repository.listAll();
@@ -25,11 +44,11 @@ public class TodoService {
     }
 
     public List<Todo> listAll() {
-        List<Todo> lista= repository.listAll();
-        if(lista.isEmpty()){
+        List<Todo> todoList = repository.listAll();
+        if(todoList.isEmpty()){
             System.out.println("===== Lista Vazia =====");
         }
-        return lista;
+        return todoList;
     }
 
     public Todo findById(int id){
@@ -37,40 +56,23 @@ public class TodoService {
     }
 
     public List<Todo> listByCategory(String category) {
-        List<Todo> result = new ArrayList<>();
-        for (Todo todo : repository.listAll()) {
-            if (todo.getCategory().equalsIgnoreCase(category)) {
-                result.add(todo);
-            }
-        }
-        if (result.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException("Categoria não encontrada");
-        }
-        return result;
+        return filter(todo -> todo.getCategory().equalsIgnoreCase(category));
     }
 
     public List<Todo> listByPriority(int priority) {
-        List<Todo> result = new ArrayList<>();
-        for (Todo todo : repository.listAll()) {
-            if (todo.getPriority() == priority) {
-                result.add(todo);
-            }
-        }
-        if (result.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException("Prioridade não encontrada");
-        }
-        return result;
+        return filter(todo -> todo.getPriority() == priority);
     }
 
     public List<Todo> listByStatus(Status status) {
+        return filter(todo -> todo.getStatus() == status);
+    }
+
+    private List<Todo> filter(Predicate<Todo> condition) {
         List<Todo> result = new ArrayList<>();
         for (Todo todo : repository.listAll()) {
-            if (todo.getStatus() == status) {
+            if (condition.test(todo)) {
                 result.add(todo);
             }
-        }
-        if (result.isEmpty()) {
-            throw new ArrayIndexOutOfBoundsException("Status não encontrado");
         }
         return result;
     }
@@ -79,7 +81,7 @@ public class TodoService {
         repository.deleteTodoById(id);
     }
 
-    public void delelteAllTodo() {
+    public void deleteAllTodo() {
         repository.deleteAllTodo();
     }
 
@@ -90,7 +92,7 @@ public class TodoService {
 
     public List<Todo> checkPendingAlarms() {
         List<Todo> result = new ArrayList<>();
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(clock);
         for (Todo todo : repository.listAll()) {
             if (todo.hasPendingAlarm(now)) {
                 result.add(todo);
