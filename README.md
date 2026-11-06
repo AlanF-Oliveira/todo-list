@@ -44,10 +44,33 @@ Tarefas podem ter alarmes configurados, avisando uma ou mais horas antes do praz
 
 ## Testes
 
-Testes com Spock, cobrindo todos os métodos CRUD da Service.
+Testes com Spock, cobrindo os métodos CRUD da Service, filtros, prioridades,
+atualizações, exceções e alarmes.
 
 ## Como executar os testes
 
 ```bash
 ./gradlew test
 ```
+
+## Refatoração Clean Code
+
+As principais correções realizadas no backend foram:
+
+* extração de funções menores no menu, separando seleção de opções, leitura de
+  dados, configuração de alarmes e impressão de tarefas;
+* remoção de duplicação entre criação e atualização de tarefas e entre filtros;
+* substituição de nomes pouco claros e abreviações por nomes autoexplicativos;
+* melhoria do encapsulamento do repositório e da coleção de alarmes;
+* tratamento explícito de prioridades inválidas, IDs inexistentes e argumentos
+  nulos;
+* injeção de `TodoRepository` e `Clock`, tornando o serviço mais testável;
+* remoção de comentários obsoletos e correção de inconsistências de formatação;
+* ampliação dos testes automatizados para casos normais e de borda.
+
+Essas mudanças melhoraram a separação de responsabilidades, reduziram a
+duplicação, tornaram os contratos de erro claros e facilitaram a manutenção e
+validação do código sem alterar as funcionalidades previstas da aplicação.
+
+O processo completo está documentado em [`docs/spec.md`](docs/spec.md),
+[`docs/plano.md`](docs/plano.md) e [`RELATORIO.md`](RELATORIO.md).
