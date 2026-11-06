@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Todo {
     private static int nextId = 1;
     private final int id;
@@ -17,7 +16,7 @@ public class Todo {
     private Integer priority;
     private String category;
     private Status status;
-    private List<Alarm> alarms = new ArrayList<>();
+    private final List<Alarm> alarms = new ArrayList<>();
 
     public Todo(String name, String description, LocalDateTime finalDateTime, Integer priority, String category, Status status) {
         this.id = nextId++;
@@ -38,7 +37,7 @@ public class Todo {
     }
 
     public List<Alarm> getAlarms() {
-        return alarms;
+        return new ArrayList<>(alarms);
     }
 
     public void addAlarm(Alarm alarm) {
@@ -66,12 +65,10 @@ public class Todo {
     }
 
     public void setPriority(Integer priority) {
-        if (priority != null && priority > 0 && priority <= 5) {
-            this.priority = priority;
-        } else {
-            System.out.println("Valor inválido.");
+        if (priority == null || priority < 1 || priority > 5) {
+            throw new IllegalArgumentException("Valor inválido.");
         }
-
+        this.priority = priority;
     }
 
     public String getCategory() {
@@ -113,11 +110,11 @@ public class Todo {
 
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return "id = " + id
                 + " | Tarefa = " + name
                 + " | Descrição = " + description
-                + " | Data de término = " + finalDateTime.format(dtf)
+                + " | Data de término = " + finalDateTime.format(dateTimeFormatter)
                 + " | Prioridade = " + priority
                 + " | Categoria = " + category
                 + " | Status = " + getStatus();

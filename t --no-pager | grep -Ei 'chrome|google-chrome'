@@ -1,0 +1,100 @@
+Sep 21 07:03:04 ubuntu nvidia-persistenced[1592]: Socket closed.
+Sep 21 07:03:04 ubuntu nvidia-persistenced[1592]: PID file unlocked.
+Sep 21 07:03:04 ubuntu nvidia-persistenced[1592]: PID file closed.
+Sep 21 07:03:04 ubuntu nvidia-persistenced[1592]: [0;1;39m[0;1;31m[0;1;39mThe daemon no longer has permission to remove its runtime data directory /var/run/nvidia-persistenced[0m
+Sep 21 07:03:04 ubuntu nvidia-persistenced[1592]: [0;1;39m[0;1;31m[0;1;39mShutdown (1592)[0m
+Sep 21 07:03:04 ubuntu NetworkManager[1287]: <info>  [1789984984.3226] dhcp4 (enp6s0): canceled DHCP transaction
+Sep 21 07:03:04 ubuntu NetworkManager[1287]: <info>  [1789984984.3226] dhcp4 (enp6s0): activation: beginning transaction (timeout in 45 seconds)
+Sep 21 07:03:04 ubuntu NetworkManager[1287]: <info>  [1789984984.3226] dhcp4 (enp6s0): state changed no lease
+Sep 21 07:03:04 ubuntu NetworkManager[1287]: <info>  [1789984984.3227] manager: NetworkManager state is now CONNECTED_SITE
+Sep 21 07:03:04 ubuntu dbus-daemon[1268]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.5' (uid=0 pid=1287 comm="/usr/sbin/NetworkManager --no-daemon" label="unconfined")
+Sep 21 07:03:04 ubuntu systemd[1]: Stopping systemd-random-seed.service - Load/Save OS Random Seed...
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-udev-load-credentials.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+Sep 21 07:03:04 ubuntu systemd[1]: packagekit.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped packagekit.service - PackageKit Daemon.
+Sep 21 07:03:04 ubuntu systemd[1]: [0;1;39m[0;1;31m[0;1;39mpackagekit.service: Consumed 10.026s CPU time over 14.836s wall clock time, 1.4G memory peak.[0m
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-hostnamed.service - Hostname Service.
+Sep 21 07:03:04 ubuntu systemd[1]: polkit.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped polkit.service - Authorization Manager.
+Sep 21 07:03:04 ubuntu systemd[1]: NetworkManager-dispatcher.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped NetworkManager-dispatcher.service - Network Manager Script Dispatcher Service.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-logind.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-logind.service - User Login Management.
+Sep 21 07:03:04 ubuntu systemd[1]: alsa-restore.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped alsa-restore.service - Save/Restore Sound Card State.
+Sep 21 07:03:04 ubuntu systemd[1]: nvidia-persistenced.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped nvidia-persistenced.service - NVIDIA Persistence Daemon.
+Sep 21 07:03:04 ubuntu dbus-daemon[1268]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Transaction for NetworkManager-dispatcher.service/start is destructive (netplan-configure.service has 'stop' job queued, but 'start' is included in transaction).
+Sep 21 07:03:04 ubuntu systemd[1]: [0;1;39m[0;1;31m[0;1;39mRequested transaction contradicts existing jobs: Transaction for NetworkManager-dispatcher.service/start is destructive (netplan-configure.service has 'stop' job queued, but 'start' is included in transaction).[0m
+Sep 21 07:03:04 ubuntu systemd[1]: Removed slice user.slice - User and Session Slice.
+Sep 21 07:03:04 ubuntu NetworkManager[1287]: <info>  [1789984984.3526] exiting (success)
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-random-seed.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-random-seed.service - Load/Save OS Random Seed.
+Sep 21 07:03:04 ubuntu systemd[1]: NetworkManager.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped NetworkManager.service - Network Manager.
+Sep 21 07:03:04 ubuntu systemd[1]: netplan-configure.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped netplan-configure.service - Netplan Backend Configuration.
+Sep 21 07:03:04 ubuntu systemd[1]: dracut-shutdown.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped dracut-shutdown.service - Restore /run/initramfs on shutdown.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target sysinit.target - System Initialization.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target cryptsetup.target - Local Encrypted Volumes.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target imports.target - Image Downloads.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target integritysetup.target - Local Integrity Protected Volumes.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target veritysetup.target - Local Verity Protected Volumes.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopping systemd-binfmt.service - Set Up Additional Binary Formats...
+Sep 21 07:03:04 ubuntu systemd[1]: Stopping systemd-resolved.service - Network Name Resolution...
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-tmpfiles-setup.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-tmpfiles-setup.service - Create System Files and Directories.
+Sep 21 07:03:04 ubuntu systemd[1]: Started plymouth-reboot.service - Show Plymouth Reboot Screen.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-binfmt.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-binfmt.service - Set Up Additional Binary Formats.
+Sep 21 07:03:04 ubuntu systemd[1]: proc-sys-fs-binfmt_misc.automount: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Unset automount proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target local-fs.target - Local File Systems.
+Sep 21 07:03:04 ubuntu systemd[1]: Unmounting boot-efi.mount - /boot/efi...
+Sep 21 07:03:04 ubuntu systemd[1]: Unmounting tmp.mount - Temporary Directory /tmp...
+Sep 21 07:03:04 ubuntu systemd[1]: plymouth-switch-root-initramfs.service - Tell Plymouth To Jump To initramfs skipped, no trigger condition checks were met.
+Sep 21 07:03:04 ubuntu systemd[1]: proc-sys-fs-binfmt_misc.mount: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: boot-efi.mount: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Unmounted boot-efi.mount - /boot/efi.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-fsck@dev-disk-by\x2duuid-87D0\x2d8296.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-fsck@dev-disk-by\x2duuid-87D0\x2d8296.service - File System Check on /dev/disk/by-uuid/87D0-8296.
+Sep 21 07:03:04 ubuntu systemd[1]: Removed slice system-systemd\x2dfsck.slice - Slice /system/systemd-fsck.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target local-fs-pre.target - Preparation for Local File Systems.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-tmpfiles-setup-dev.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in /dev.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-tmpfiles-setup-dev-early.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-resolved.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-resolved.service - Network Name Resolution.
+Sep 21 07:03:04 ubuntu systemd[1]: tmp.mount: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Unmounted tmp.mount - Temporary Directory /tmp.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped target swap.target - Swaps.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-resolved-monitor.socket: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Closed systemd-resolved-monitor.socket - Resolve Monitor Varlink Socket.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-resolved-varlink.socket: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Closed systemd-resolved-varlink.socket - Resolve Service Varlink Socket.
+Sep 21 07:03:04 ubuntu systemd[1]: Deactivating swap swap.img.swap - /swap.img...
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-sysctl.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-sysctl.service - Apply Kernel Variables.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-modules-load.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-modules-load.service - Load Kernel Modules.
+Sep 21 07:03:04 ubuntu systemd[1]: swap.img.swap: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Deactivated swap swap.img.swap - /swap.img.
+Sep 21 07:03:04 ubuntu systemd[1]: Reached target umount.target - Unmount All Filesystems.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-remount-fs.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-remount-fs.service - Remount Root and Kernel File Systems.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-fsck-root.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Stopped systemd-fsck-root.service - File System Check on Root Device.
+Sep 21 07:03:04 ubuntu systemd[1]: Reached target shutdown.target - System Shutdown.
+Sep 21 07:03:04 ubuntu systemd[1]: Reached target final.target - Late Shutdown Services.
+Sep 21 07:03:04 ubuntu systemd[1]: systemd-reboot.service: Deactivated successfully.
+Sep 21 07:03:04 ubuntu systemd[1]: Finished systemd-reboot.service - System Reboot.
+Sep 21 07:03:04 ubuntu systemd[1]: Reached target reboot.target - System Reboot.
+Sep 21 07:03:04 ubuntu systemd[1]: [0;1;39m[0;1;31m[0;1;39mShutting down.[0m
+Sep 21 07:03:04 ubuntu systemd-shutdown[1]: Syncing filesystems and block devices.
+Sep 21 07:03:04 ubuntu systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+Sep 21 07:03:04 ubuntu systemd-journald[506]: Received SIGTERM from PID 1 (systemd-shutdow).
+Sep 21 07:03:04 ubuntu systemd-journald[506]: Journal stopped
