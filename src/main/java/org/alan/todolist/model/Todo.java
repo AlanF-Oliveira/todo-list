@@ -38,7 +38,7 @@ public class Todo {
     }
 
     public List<Alarm> getAlarms() {
-        return alarms;
+        return new ArrayList<>(alarms);
     }
 
     public void addAlarm(Alarm alarm) {
@@ -66,12 +66,10 @@ public class Todo {
     }
 
     public void setPriority(Integer priority) {
-        if (priority != null && priority > 0 && priority <= 5) {
-            this.priority = priority;
-        } else {
-            System.out.println("Valor inválido.");
+        if (priority == null || priority < 1 || priority > 5) {
+            throw new IllegalArgumentException("Valor inválido.");
         }
-
+        this.priority = priority;
     }
 
     public String getCategory() {

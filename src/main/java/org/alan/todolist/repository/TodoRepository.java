@@ -3,6 +3,7 @@ package org.alan.todolist.repository;
 import org.alan.todolist.model.Todo;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.List;
 
 public class TodoRepository {
@@ -14,23 +15,17 @@ public class TodoRepository {
     }
 
     public List<Todo> listAll() {
-        if (!list.isEmpty()) {
-            return new ArrayList<>(list);
-        } else {
-            System.out.println();
-            //System.out.println("====Lista vazia====");
-            return  new ArrayList<>();
-        }
+        return new ArrayList<>(list);
     }
 
     public void deleteTodoById(int id) {
-        for (Todo todo : list) {
+        for (Todo todo : new ArrayList<>(list)) {
             if (todo.getId() == id) {
                 list.remove(todo);
                 return;
             }
         }
-        throw new IllegalArgumentException("Id not found ");
+        throw new NoSuchElementException("Todo não encontrado");
     }
 
     public Todo findById(int id) {
@@ -39,7 +34,7 @@ public class TodoRepository {
                 return todo;
             }
         }
-        throw new IllegalArgumentException("Id not found ");
+        throw new NoSuchElementException("Todo não encontrado");
     }
 
     public void deleteAllTodo() {
@@ -57,7 +52,7 @@ public class TodoRepository {
             todo.setStatus(todoRequest.getStatus());
 
         } else {
-                throw new NullPointerException("Parâmetro inválido ");
+            throw new NullPointerException("Parâmetro inválido");
         }
         return todo;
     }
